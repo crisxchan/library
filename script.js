@@ -1,7 +1,21 @@
+let myLibrary = [];
+
 const openAddBookModal = document.querySelector('[data-modal-target]');
 const closeAddBookModal = document.querySelector('[data-modal-close]');
 const overlay = document.getElementById('overlay')
 
+const addBookForm = document.getElementById('modal-form');
+const checkBtn = document.getElementById('check');
+
+let allCardReadStatus = document.querySelectorAll('.card-doneReading');
+
+// Book Constructor
+function Book(title, author, pages, doneReading){
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.doneReading = doneReading
+}
 
 // Open and Close Add Book Modal
 openAddBookModal.addEventListener('click', () => {
@@ -20,6 +34,7 @@ overlay.addEventListener('click', () => {
 })
 
 function openModal(modal) {
+    addBookForm.reset();
     if (modal==null) return;
 
     modal.classList.add('active');
@@ -33,22 +48,83 @@ function closeModal(modal) {
     overlay.classList.remove('active');
 }
 
+// Add New Book to Library
+addBookForm.addEventListener('submit', (e) => {
+    const activeModal = document.querySelector('#modal-add-book.active');
+    closeModal(activeModal);
+    e.preventDefault();
+    
+    let title = document.querySelector('form > #title').value;
+    let author = document.querySelector('form > #author').value;
+    let pages = document.querySelector('form > #number-of-pages').value;
+    let readStatus = document.getElementById('read-status').checked;
 
-// let myLibrary = [];
+    let newBook = new Book(title, author, pages, readStatus);
 
-// function Book(title, author, pages, doneReading){
-//     this.title = title;
-//     this.author = author;
-//     this.pages = pages;
-//     this.doneReading = doneReading
-//     // this.info = () => {
-//     //     let readStatus = doneReading ? 'done reading' : 'not done reading';
-//     //     return (`${title} by ${author}, ${pages} pages, ${readStatus}`);
-//     // }
-// }
+    myLibrary.push(newBook);
 
-// Book.prototype.info = function(){
-//     let readStatus = this.doneReading ? 'done reading' : 'not done reading';
-//     return (`${this.title} by ${this.author}, ${this.pages} pages, ${readStatus}`);
-// }
+    updateLibrary();
+});
 
+function updateLibrary(){
+    let cardIndex = 0;
+    const libraryGrid = document.querySelector('#books');
+    libraryGrid.innerHTML = '';
+
+    myLibrary.forEach(book => {
+        let card = document.createElement('div');
+        for(let key in book){
+            let div = document.createElement('div');
+            let text;
+
+            if(key == 'doneReading'){
+                if(book[key]){
+                    text = document.createTextNode('READ');
+                    div.classList.add('read');
+                }
+                else{       
+                    text = document.createTextNode('NOT READ');
+                    div.classList.add('not-read');
+                }
+            }
+            else if(key == 'pages'){
+                text = document.createTextNode(`${book[key]} PAGES`);
+            }
+            else{
+                text = document.createTextNode(`${book[key]}`.toUpperCase());
+            }
+
+            div.appendChild(text);
+            div.classList.add(`card-${key}`);
+            card.appendChild(div);
+        }
+        card.setAttribute('id', `card-${cardIndex++}`);
+        card.classList.add('card');
+        libraryGrid.appendChild(card)
+    });
+
+    // to initialize toggle functionality for read status of new book 
+    initNewBook();
+}
+
+// Change Read Status of Book in Library
+function initNewBook(){
+    allCardReadStatus = document.querySelectorAll('.card-doneReading');
+    allCardReadStatus.forEach(cardReadStatus => cardReadStatus.addEventListener('click', toggleReadStatus));
+}
+
+function toggleReadStatus(e){
+    let indexOfBook = e.target.parentElement.id.split('-')[1];
+    console.log(myLibrary[indexOfBook]);
+    if(e.target.innerHTML == 'NOT READ'){
+        myLibrary[indexOfBook].doneReading = true;
+        e.target.innerHTML = 'READ'
+        e.target.style.backgroundColor = 'green'
+    }
+    else {
+        myLibrary[indexOfBook].doneReading = false;
+        e.target.innerHTML = 'NOT READ'
+        e.target.style.backgroundColor = 'crimson'
+    }
+    console.log(myLibrary[indexOfBook]);
+}

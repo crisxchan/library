@@ -4,7 +4,7 @@ html{
 }
 
 body {
-    height: 100%;
+    min-height: 100%;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -12,13 +12,13 @@ body {
 }
 
 header, footer {
-    min-height: 80px;
+    height: 80px;
     width: 100vw;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    font-size: 20px;
+    font-size: 1rem;
 }
 
 /* header */
@@ -28,15 +28,16 @@ header {
 
 /* main */
 main {
-    border: solid red;
-    height: 100%;
+    padding: 0 40px;
+    min-height: calc(100vh - 160px);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 30px 10px 10px 10px;
+    align-items: center; 
 }
 
 #add-book-btn {
+    position: relative;
+    margin: 20px 0;
     cursor: pointer;
     font-size: 1.5rem;
     height: 3rem;
@@ -54,10 +55,62 @@ main {
 }
 
 #books {
-    border: solid yellow;
+    padding: 20px;
+    min-height: calc(100vh - 160px - 3rem - 40px - 40px);
     width: 100%;
-    height: 100%;
     display: grid;
+    justify-items: center; 
+    align-items: center;
+    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.card {
+    border: 2px solid black;
+    background-color: aliceblue;
+    border-radius: 10px;
+    width: 30%;
+    min-width: 250px;
+    height: 50%;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid black;
+}
+
+.card-author {
+    font-size: 1.2rem;
+}
+
+.card-doneReading {
+    cursor: pointer;
+    color: white;
+    border: 1px solid grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    height: 2rem;
+    border-radius: 5px;
+    transition: 0.4s;
+}
+
+.read {
+    background-color: green;
+}
+
+.not-read {
+    background-color: crimson;
 }
 
 /* footer */
@@ -127,7 +180,6 @@ main {
     transition: 0.2s
 }
 
-/* overlay */
 #overlay {
     opacity: 0;
     transition: 200ms ease-in-out;

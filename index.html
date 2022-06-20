@@ -20,8 +20,15 @@
 
     <main>
         <button data-modal-target="#modal-add-book" id="add-book-btn">Add Book</button>
-        <h3>Books</h3>
-        <div id="books"></div>
+
+        <div id="books">
+            <!-- <div class="card">
+                <div class="card-title">Harry Potter and the Sorcerers Stone</div>
+                <div class="card-author">Author</div>
+                <div class="card-pages">0</div>
+                <div class="card-doneReading not-read">NOT READ</div>
+            </div> -->
+        </div> 
     </main>
 
     <footer>
@@ -37,7 +44,7 @@
             <button data-modal-close id="modal-close-btn">&times;</button>
         </div>
         <div id="modal-body">
-            <form>
+            <form id="modal-form" method="">
                 <input type="text" id="title" placeholder="Title" required>
 
                 <input type="text" id="author" placeholder="Author" required>
