@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Library</title>
+</head>
+<body>
+    <script src="index.js"></script>
+
+    <header>
+        <h1>LIBRARY</h1>
+    </header>
+
+    <main>
+        <button data-modal-target="#modal-add-book" id="add-book-btn">Add Book</button>
+        <h3>Books</h3>
+        <div id="books"></div>
+    </main>
+
+    <footer>
+        <p>Copyright © 2022 crisxchan</p>
+        <a href="https://github.com/crisxchan " target="_blank">
+            <i class="fa fa-github ghlogo" aria-hidden="true"></i>
+        </a>
+    </footer>
+
+    <div id="modal-add-book">
+        <div id="modal-header">
+            <div id="modal-title">Add New Book</div>
+            <button data-close-button id="modal-close-btn">&times;</button>
+        </div>
+        <div id="modal-body">
+            <form>
+                <input type="text" id="title" placeholder="Title" required>
+
+                <input type="text" id="author" placeholder="Author" required>
+
+                <input type="number" id="number-of-pages" placeholder="Pages" required>
+
+                <div id="read-status-input">
+                    <label for="read-status">Have you read it?</label>
+                    <input type="checkbox" id="read-status" required>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="overlay"></div>
+</body>
+</html>

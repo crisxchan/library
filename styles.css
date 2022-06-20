@@ -1,0 +1,133 @@
+html{
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header, footer {
+    min-height: 80px;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 20px;
+}
+
+/* header */
+header {
+    box-shadow: 0 2px 4px 0 #33333330, 0 2px 16px 0 #33333330;
+}
+
+/* main */
+main {
+    border: solid red;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 10px 10px 10px;
+}
+
+#add-book-btn {
+    cursor: pointer;
+    font-size: 1.5rem;
+    height: 3rem;
+    width: 12rem; 
+    background-color: white;
+    border: 2px solid black; 
+    border-radius: 0.5rem; 
+    transition: 0.2s
+}
+
+#add-book-btn:active {
+    background-color: aliceblue;
+    box-shadow: 0 5px #AAA;
+    transform: translateY(4px);
+}
+
+#books {
+    border: solid yellow;
+    width: 100%;
+    height: 100%;
+    display: grid;
+}
+
+/* footer */
+.ghlogo {
+    font-size: 30px;
+    color: black;
+}
+
+/* modal */
+#modal-add-book {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    border: solid black;
+    border-radius: 10px;
+    background-color: white;
+    z-index: 10;
+    width: 700px;
+    max-width: 80%;
+}
+
+#modal-add-book.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    border-bottom: 1px solid black;
+}
+
+#modal-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+#modal-close-btn {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+#modal-body > form {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+/* overlay */
+#overlay {
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
