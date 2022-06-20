@@ -12,7 +12,7 @@
     <title>Library</title>
 </head>
 <body>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 
     <header>
         <h1>LIBRARY</h1>
@@ -34,7 +34,7 @@
     <div id="modal-add-book">
         <div id="modal-header">
             <div id="modal-title">Add New Book</div>
-            <button data-close-button id="modal-close-btn">&times;</button>
+            <button data-modal-close id="modal-close-btn">&times;</button>
         </div>
         <div id="modal-body">
             <form>
@@ -46,8 +46,10 @@
 
                 <div id="read-status-input">
                     <label for="read-status">Have you read it?</label>
-                    <input type="checkbox" id="read-status" required>
+                    <input type="checkbox" id="read-status">
                 </div>
+
+                <button type="submit" id="modal-add-btn">Add</button>
             </form>
         </div>
     </div>
