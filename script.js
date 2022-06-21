@@ -5,7 +5,6 @@ const closeAddBookModal = document.querySelector('[data-modal-close]');
 const overlay = document.getElementById('overlay')
 
 const addBookForm = document.getElementById('modal-form');
-const checkBtn = document.getElementById('check');
 
 let allCardReadStatus = document.querySelectorAll('.card-doneReading');
 
@@ -96,26 +95,44 @@ function updateLibrary(){
 
             div.appendChild(text);
             div.classList.add(`card-${key}`);
-            card.appendChild(div);
+
+            if(key == 'doneReading'){
+                let wrapperDiv = document.createElement('div');
+                wrapperDiv.appendChild(div);
+                wrapperDiv.classList.add('card-bottom');
+
+                let removeButton = document.createElement('span');
+                removeButton.classList.add('material-symbols-outlined', 'card-delete');
+                removeButton.innerHTML = 'delete';
+                wrapperDiv.appendChild(removeButton);
+
+                card.appendChild(wrapperDiv);
+            }
+            else{
+                card.appendChild(div);
+            }
         }
         card.setAttribute('id', `card-${cardIndex++}`);
         card.classList.add('card');
         libraryGrid.appendChild(card)
     });
 
-    // to initialize toggle functionality for read status of new book 
+    // to initialize toggle functionality for read status of new book and remove book functionality
     initNewBook();
 }
 
-// Change Read Status of Book in Library
 function initNewBook(){
     allCardReadStatus = document.querySelectorAll('.card-doneReading');
     allCardReadStatus.forEach(cardReadStatus => cardReadStatus.addEventListener('click', toggleReadStatus));
+
+    const allCardRemoveBook = document.querySelectorAll('.card-delete');
+    allCardRemoveBook.forEach(cardRemove => cardRemove.addEventListener('click', removeBook))
+
 }
 
+// Change Read Status of Book in Library
 function toggleReadStatus(e){
-    let indexOfBook = e.target.parentElement.id.split('-')[1];
-    console.log(myLibrary[indexOfBook]);
+    let indexOfBook = e.target.parentElement.parentElement.id.split('-')[1];
     if(e.target.innerHTML == 'NOT READ'){
         myLibrary[indexOfBook].doneReading = true;
         e.target.innerHTML = 'READ'
@@ -126,5 +143,12 @@ function toggleReadStatus(e){
         e.target.innerHTML = 'NOT READ'
         e.target.style.backgroundColor = 'crimson'
     }
-    console.log(myLibrary[indexOfBook]);
+}
+
+// Remove Book in Library
+function removeBook(e){
+    let indexOfBook = e.target.parentElement.parentElement.id.split('-')[1];
+    myLibrary.splice(indexOfBook, 1);
+
+    updateLibrary();
 }

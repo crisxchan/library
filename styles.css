@@ -21,6 +21,22 @@ header, footer {
     font-size: 1rem;
 }
 
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+.material-symbols-outlined:hover {
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+  }
+
 /* header */
 header {
     box-shadow: 0 2px 4px 0 #33333330, 0 2px 16px 0 #33333330;
@@ -92,6 +108,14 @@ main {
     font-size: 1.2rem;
 }
 
+.card-bottom {
+    /* border: solid red; */
+    display: flex;
+    width: 80%;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .card-doneReading {
     cursor: pointer;
     color: white;
@@ -111,6 +135,12 @@ main {
 
 .not-read {
     background-color: crimson;
+}
+
+.card-delete {
+    cursor: pointer;
+    font-size: 2rem;
+    color: grey;
 }
 
 /* footer */
