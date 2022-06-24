@@ -9,11 +9,13 @@ const addBookForm = document.getElementById('modal-form');
 let allCardReadStatus = document.querySelectorAll('.card-doneReading');
 
 // Book Constructor
-function Book(title, author, pages, doneReading){
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.doneReading = doneReading
+class Book {
+    constructor(title, author, pages, doneReading) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.doneReading = doneReading
+    }
 }
 
 // Open and Close Add Book Modal
